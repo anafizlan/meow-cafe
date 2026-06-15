@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+@php
+$contact = \App\Models\Contact::first();
+@endphp
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -49,13 +51,30 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="{{ url('/') }}">Home<br></a></li>
+          <li><a href="{{ url('/home') }}">Home<br></a></li>
           <li><a href="{{ url('/about') }}">About</a></li>
           <li><a href="{{ url('/services') }}">Services</a></li>
           <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
           <li><a href="{{ url('/team') }}">Team</a></li>
           <li><a href="{{ url('/blog') }}">Blog</a></li>
           <li><a href="{{ url('/contact') }}" class="active">Contact</a></li>
+           @if (Auth::check() && Auth::user()->role == 'admin')
+                        <a href="/admin/hero" class="btn btn-warning">
+                            Admin Panel
+                        </a>
+                    @endif
+                    @if (Auth::check())
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 10px;">
+                                Logout
+                            </button>
+                        </form>
+                    @else
+                        <button type="button" class="btn btn-secondary" style="margin-top: 10px; margin-bottom: 10px;" onclick="window.location.href='/'">
+                            Back
+                        </button>
+                    @endif
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -71,7 +90,7 @@
         <h1>Contact</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="{{ url('/') }}">Home</a></li>
+            <li><a href="{{ url('/home') }}">Home</a></li>
             <li class="current">Contact</li>
           </ol>
         </nav>
@@ -90,7 +109,7 @@
               <i class="bi bi-geo-alt flex-shrink-0"></i>
               <div>
                 <h3>Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>{{ $contact->address }}</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -98,7 +117,7 @@
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
+                <p>{{ $contact->phone }}</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -106,7 +125,7 @@
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p>info@example.com</p>
+                <p>{{ $contact->email }}</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -193,11 +212,9 @@
 
           <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p>United States</p>
-            <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>{{ $contact->address }}</p>
+            <p>{{ $contact->phone }}</p>
+            <p>{{ $contact->email }}</p>
           </div>
 
         </div>

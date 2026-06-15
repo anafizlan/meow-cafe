@@ -49,13 +49,30 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="{{ url('/') }}">Home<br></a></li>
+          <li><a href="{{ url('/home') }}">Home<br></a></li>
           <li><a href="{{ url('/about') }}">About</a></li>
           <li><a href="{{ url('/services') }}">Services</a></li>
           <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
           <li><a href="{{ url('/team') }}" class="active">Team</a></li>
           <li><a href="{{ url('/blog') }}">Blog</a></li>
           <li><a href="{{ url('/contact') }}">Contact</a></li>
+          @if (Auth::check() && Auth::user()->role == 'admin')
+                        <a href="/admin/hero" class="btn btn-warning">
+                            Admin Panel
+                        </a>
+                    @endif
+                    @if (Auth::check())
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 10px;">
+                                Logout
+                            </button>
+                        </form>
+                    @else
+                        <button type="button" class="btn btn-secondary" style="margin-top: 10px; margin-bottom: 10px;" onclick="window.location.href='/'">
+                            Back
+                        </button>
+                    @endif
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -71,7 +88,7 @@
         <h1>Team</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="{{ url('/') }}">Home</a></li>
+            <li><a href="{{ url('/home') }}">Home</a></li>
             <li class="current">Team</li>
           </ol>
         </nav>
@@ -88,7 +105,7 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="team-member">
                             <div class="member-img">
-                                <img src="{{ asset('assets/img/cat about3.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/' . $team->member1_image) }}" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -97,8 +114,8 @@
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h4>Walter White</h4>
-                                <span>Chief Executive Officer</span>
+                                <h4>{{ $team->member1_name }}</h4>
+                                <span>{{ $team->member1_position }}</span>
                             </div>
                         </div>
                     </div><!-- End Team Member -->
@@ -106,7 +123,7 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                         <div class="team-member">
                             <div class="member-img">
-                                <img src="{{ asset('assets/img/cat about4.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/' . $team->member2_image) }}" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -115,8 +132,8 @@
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h4>Ethan Carter</h4>
-                                <span>Product Manager</span>
+                                <h4>{{ $team->member2_name }}</h4>
+                                <span>{{ $team->member2_position }}</span>
                             </div>
                         </div>
                     </div><!-- End Team Member -->
@@ -124,7 +141,7 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                         <div class="team-member">
                             <div class="member-img">
-                                <img src="{{ asset('assets/img/cat about5.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/' . $team->member3_image) }}" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -133,8 +150,8 @@
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
+                                <h4>{{ $team->member3_name }}</h4>
+                                <span>{{ $team->member3_position }}</span>
                             </div>
                         </div>
                     </div><!-- End Team Member -->
@@ -142,7 +159,7 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                         <div class="team-member">
                             <div class="member-img">
-                                <img src="{{ asset('assets/img/cat about6.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/' . $team->member4_image) }}" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -151,8 +168,8 @@
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h4>Ryan Mitchell</h4>
-                                <span>Accountant</span>
+                                <h4>{{ $team->member4_name }}</h4>
+                                <span>{{ $team->member4_position }}</span>
                             </div>
                         </div>
                     </div><!-- End Team Member -->

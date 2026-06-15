@@ -49,14 +49,33 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{{ url('/') }}" class="active">Home<br></a></li>
+                    <li><a href="{{ url('/home') }}" class="active">Home<br></a></li>
                     <li><a href="{{ url('/about') }}">About</a></li>
                     <li><a href="{{ url('/services') }}">Services</a></li>
                     <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
                     <li><a href="{{ url('/team') }}">Team</a></li>
                     <li><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
+
+                    @if (Auth::check() && Auth::user()->role == 'admin')
+                        <a href="/admin/hero" class="btn btn-warning">
+                            Admin Panel
+                        </a>
+                    @endif
+                    @if (Auth::check())
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 10px;">
+                                Logout
+                            </button>
+                        </form>
+                    @else
+                        <button type="button" class="btn btn-secondary" style="margin-top: 10px; margin-bottom: 10px;" onclick="window.location.href='/'">
+                            Back
+                        </button>
+                    @endif
                 </ul>
+
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
@@ -68,16 +87,16 @@
         <!-- Hero Section -->
         <section id="hero" class="hero section dark-background">
 
-            <img src="{{ asset('assets/img/cat main pg1.jpg') }}" alt="" data-aos="fade-in">
+            <img src="{{ asset('assets/img/' . $hero->image) }}" alt="">
 
             <div class="container">
                 <div class="row">
                     <div class="col-xl-4">
-                        <h1 data-aos="fade-up">Welcome to Meow Cafe ☕ Where every coffee comes with purrs🐾</h1>
+                        <h1>{{ $hero->title }}</h1>
 
                         <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                             <a href="#about" class="btn-get-started">Get Started</a>
-                            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                            <a href="{{ $hero->video_url }}" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>{{ $hero->button_text }}</span></a>
                         </div>
                     </div>
                 </div>
@@ -372,7 +391,7 @@
                     <div class="col-lg-2 col-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><a href="/">Home</a></li>
+                            <li><a href="/home">Home</a></li>
                             <li><a href="/about">About us</a></li>
                             <li><a href="/services">Services</a></li>
                         </ul>

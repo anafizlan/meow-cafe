@@ -49,13 +49,30 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{{ url('/') }}">Home<br></a></li>
+                    <li><a href="{{ url('/home') }}">Home<br></a></li>
                     <li><a href="{{ url('/about') }}" class="active">About</a></li>
                     <li><a href="{{ url('/services') }}">Services</a></li>
                     <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
                     <li><a href="{{ url('/team') }}">Team</a></li>
                     <li><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
+                     @if (Auth::check() && Auth::user()->role == 'admin')
+                        <a href="/admin/hero" class="btn btn-warning">
+                            Admin Panel
+                        </a>
+                    @endif
+                    @if (Auth::check())
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 10px;">
+                                Logout
+                            </button>
+                        </form>
+                    @else
+                        <button type="button" class="btn btn-secondary" style="margin-top: 10px; margin-bottom: 10px;" onclick="window.location.href='/'">
+                            Back
+                        </button>
+                    @endif
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -71,7 +88,7 @@
                 <h1>About</h1>
                 <nav class="breadcrumbs">
                     <ol>
-                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('/home') }}">Home</a></li>
                         <li class="current">About</li>
                     </ol>
                 </nav>
@@ -85,18 +102,18 @@
 
                 <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="col-lg-5">
-                        <img src="{{ asset('assets/img/cat about1.jpg') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('assets/img/' . $about->image1) }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
                         <div class="content">
-                            <h3>🐾 About Meow Cafe</h3>
+                            <h3>{{ $about->title }}</h3>
                             <p>
-                                Every cat in our cafe has its own unique story. Some were rescued from the streets, while others were abandoned and needed a safe place to heal. With patience, warmth, and lots of cuddles, they slowly found happiness again. Our mission is not only to create a peaceful cafe experience, but also to
+                                {{ $about->description }}
                             </p>
                             <ul>
-                                <li><i class="bi bi-check-circle-fill"></i> <span>Raise awareness about cat rescue and adoption</span></li>
-                                <li><i class="bi bi-check-circle-fill"></i> <span>Provide a safe and loving environment for rescued cats</span></li>
-                                <li><i class="bi bi-check-circle-fill"></i> <span>To build a cozy space where people can relax, enjoy good coffee, and spend time with rescued cats looking for love and care</span></li>
+                                <li><i class="bi bi-check-circle-fill"></i> <span>{{ $about->bullet1 }}</span></li>
+                                <li><i class="bi bi-check-circle-fill"></i> <span>{{ $about->bullet2 }}</span></li>
+                                <li><i class="bi bi-check-circle-fill"></i> <span>{{ $about->bullet3 }}</span></li>
                             </ul>
                         </div>
                     </div>
@@ -114,7 +131,7 @@
                 <div class="row g-0">
 
                     <div class="col-xl-5 img-bg" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('assets/img/cat about2.jpg') }}" alt="">
+                        <img src="{{ asset('assets/img/' . $about->image2) }}" alt="">
                     </div>
 
                     <div class="col-xl-7 slides position-relative" data-aos="fade-up" data-aos-delay="200">
@@ -319,7 +336,7 @@
                     <div class="col-lg-2 col-6 footer-links">
                           <h4>Useful Links</h4>
                         <ul>
-                            <li><a href="/">Home</a></li>
+                            <li><a href="/home">Home</a></li>
                             <li><a href="/about">About us</a></li>
                             <li><a href="/services">Services</a></li>
                         </ul>

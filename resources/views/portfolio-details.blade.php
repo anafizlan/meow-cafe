@@ -49,13 +49,30 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="{{ url('/') }}">Home<br></a></li>
+          <li><a href="{{ url('/home') }}">Home<br></a></li>
           <li><a href="{{ url('/about') }}">About</a></li>
           <li><a href="{{ url('/services') }}">Services</a></li>
           <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
           <li><a href="{{ url('/team') }}">Team</a></li>
           <li><a href="{{ url('/blog') }}">Blog</a></li>
           <li><a href="{{ url('/contact') }}">Contact</a></li>
+           @if (Auth::check() && Auth::user()->role == 'admin')
+                        <a href="/admin/hero" class="btn btn-warning">
+                            Admin Panel
+                        </a>
+                    @endif
+                    @if (Auth::check())
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 10px;">
+                                Logout
+                            </button>
+                        </form>
+                    @else
+                        <button type="button" class="btn btn-secondary" style="margin-top: 10px; margin-bottom: 10px;" onclick="window.location.href='/'">
+                            Back
+                        </button>
+                    @endif
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -71,7 +88,7 @@
         <h1>Portfolio Details</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="{{ url('/') }}">Home</a></li>
+            <li><a href="{{ url('/home') }}">Home</a></li>
             <li class="current">Portfolio Details</li>
           </ol>
         </nav>
