@@ -5,27 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\PortfolioItem;
+use App\Models\Footer;
 
 class PortfolioController extends Controller
 {
+    public function index()
+    {
+        $portfolio = Portfolio::first();
+        $portfolioItems = PortfolioItem::all();
+        $footer = Footer::first();
 
-public function index()
-{
-    $portfolio = Portfolio::first();
+        return view('portfolio', compact('portfolio', 'portfolioItems', 'footer'));
+    }
 
-    $portfolioItems = PortfolioItem::all();
+    public function portfolio()
+    {
+        $portfolioItems = PortfolioItem::all();
 
-    return view('portfolio', compact(
-        'portfolio',
-        'portfolioItems'
-    ));
-}
-
-
-   public function portfolio()
-{
-    $portfolioItems = PortfolioItem::all();
-
-    return view('admin.portfolio', compact('portfolioItems'));
-}
+        return view('admin.portfolio', compact('portfolioItems'));
+    }
 }

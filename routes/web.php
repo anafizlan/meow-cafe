@@ -12,6 +12,26 @@ use App\Http\Controllers\AdminContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\AdminPortfolioController;
 use App\Models\Team;
+use App\Http\Controllers\AdminFooterController;
+use App\Models\Footer;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\AdminCallToActionController;
+
+Route::get('/team', function () {
+
+    $team = Team::first();
+    $footer = Footer::first();
+
+    return view('team', compact(
+        'team',
+        'footer'
+    ));
+
+});
+Route::get('/admin/cta', [AdminCallToActionController::class, 'edit']);
+
+Route::post('/admin/cta/update', [AdminCallToActionController::class, 'update']);
+
 
 Route::get('/', function () {
     return view('landing');
@@ -32,13 +52,17 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/admin/hero', function () {
+
         if (auth()->user()->role !== 'admin') {
             abort(403);
         }
 
         return app(\App\Http\Controllers\AdminHeroController::class)->edit();
     });
+
+});
 
     Route::post('/admin/hero/update', function () {
         if (auth()->user()->role !== 'admin') {
@@ -47,21 +71,17 @@ Route::middleware('auth')->group(function () {
 
         return app(\App\Http\Controllers\AdminHeroController::class)->update(request());
     });
-});
+
 
 Route::get('/about', [AboutController::class, 'index']);
 
-Route::get('/services', function () {
-    return view('services');
-});
+
+
+Route::get('/services', [ServicesController::class, 'index']);
 
 Route::get('/portfolio', [PortfolioController::class, 'index']);
 
-Route::get('/team', function () {
-    $team = Team::first();
 
-    return view('team', compact('team'));
-});
 
 Route::get('/blog', function () {
     return view('blog');
@@ -98,6 +118,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/portfolio', [AdminPortfolioController::class, 'index']);
 
     Route::post('/admin/portfolio/{id}', [AdminPortfolioController::class, 'update']);
+
+
+    Route::get('/admin/footer', [AdminFooterController::class, 'edit']);
+
+    Route::post('/admin/footer/update', [AdminFooterController::class, 'update']);
+
 });
 
 require __DIR__ . '/auth.php';

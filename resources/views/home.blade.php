@@ -57,11 +57,7 @@
                     <li><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
 
-                    @if (Auth::check() && Auth::user()->role == 'admin')
-                        <a href="/admin/hero" class="btn btn-warning">
-                            Admin Panel
-                        </a>
-                    @endif
+
                     @if (Auth::check())
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
                             @csrf
@@ -87,7 +83,7 @@
         <!-- Hero Section -->
         <section id="hero" class="hero section dark-background">
 
-            <img src="{{ asset('assets/img/' . $hero->image) }}" alt="">
+            <img src="{{ asset('assets/img/' . $hero->image1) }}" alt="">
 
             <div class="container">
                 <div class="row">
@@ -112,7 +108,7 @@
                 <div class="row g-0">
 
                     <div class="col-xl-5 img-bg" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('assets/img/cat main pg2.jpg') }}" alt="">
+                        <img src="{{ asset('assets/img/' . $hero->image2) }}" alt="">
 
                     </div>
 
@@ -143,8 +139,10 @@
 
                                 <div class="swiper-slide">
                                     <div class="item">
-                                        <h3 class="mb-3">Meet Our Cats</h3>
-                                        <p>Every cat here has a unique personality, a playful spirit, and a heart full of love. From sleepy cuddle experts to energetic little troublemakers, our furry friends are always ready to brighten your day. Spend time with them, play together, and maybe even find your perfect companion.</p>
+                                        <h3 class="mb-3">
+                                            {{ $whyUs->slide1_title }}
+                                        </h3>
+                                        <p>{{ $whyUs->slide1_description }}</p>
                                     </div>
                                 </div><!-- End slide item -->
 
@@ -198,8 +196,8 @@
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
 
                         <div>
-                            <h4 class="title">🐾 Cat Grooming</h4>
-                            <p class="description">Keep your furry friend clean, healthy, and extra fluffy with our gentle grooming services made specially for cats.</p>
+                            <h4 class="title">{{ $service->service1_title }}</h4>
+                            <p class="description">{{ $service->service1_desc }}</p>
                             <a href="/services/cat-grooming" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -207,24 +205,24 @@
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
                         <div>
-                            <h4 class="title">🐾 Cat Adoption</h4>
-                            <p class="description">Find your perfect feline companion through our adoption program, where love and care meet.</p>
+                            <h4 class="title">{{ $service->service2_title }}</h4>
+                            <p class="description">{{ $service->service2_desc }}</p>
                             <a href="/services/cat-adoption" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
                         <div>
-                            <h4 class="title">🐾 Cat Hotel</h4>
-                            <p class="description">Provide a safe and comfortable stay for your cat while you're away, with our premium cat hotel services.</p>
+                            <h4 class="title">{{ $service->service3_title }}</h4>
+                            <p class="description">{{ $service->service3_desc }}</p>
                             <a href="/services/cat-hotel" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="400">
                         <div>
-                            <h4 class="title">🐾 Cat Playroom</h4>
-                            <p class="description">Provide a fun and safe environment for your cat to play and socialize with other feline friends.</p>
+                            <h4 class="title">{{ $service->service4_title }}</h4>
+                            <p class="description">{{ $service->service4_desc }}</p>
                             <a href="/services/cat-playroom" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
@@ -232,16 +230,16 @@
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="500">
 
                         <div>
-                            <h4 class="title">🐾 Vet Consultation</h4>
-                            <p class="description">Get expert veterinary advice and care for your cat with our professional consultation services.</p>
+                            <h4 class="title">{{ $service->service5_title }}</h4>
+                            <p class="description">{{ $service->service5_desc }}</p>
                             <a href="/services/vet-consultation" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="600">
                         <div>
-                            <h4 class="title">🐾 Cat Birthday Party</h4>
-                            <p class="description">Celebrate your cat's special day with a fun and memorable birthday party filled with treats, games, and lots of love.</p>
+                            <h4 class="title">{{ $service->service6_title }}</h4>
+                            <p class="description">{{ $service->service6_desc }}</p>
                             <a href="/services/cat-birthday-party" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
@@ -255,7 +253,7 @@
         <!-- Call To Action Section -->
         <section id="call-to-action" class="call-to-action section dark-background">
 
-            <img src="{{ asset('assets/img/cat main pg3.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/' . $cta->image) }}" alt="">
 
 
             <div class="container">
@@ -264,7 +262,9 @@
                         <div class="text-center">
 
 
-                            <a class="cta-btn" href="/contact">Call To Action</a>
+                            <a class="cta-btn" href="{{ $cta->button_link }}">
+                                {{ $cta->button_text }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -312,52 +312,52 @@
 
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="post-box">
-                            <div class="post-img"><img src="assets/img/cat blog1.jpg" class="img-fluid" alt=""></div>
+                            <div class="post-img"><img src="assets/img/{{ $hero->recent_blog1 }}" class="img-fluid" alt=""></div>
                             <div class="meta">
-                                <span class="post-date">Tue, December 12</span>
-                                <span class="post-author"> / Mia Carter</span>
+                                <span class="post-date">{{ $hero->rb_date1 }} </span>
+                                <span class="post-author">{{ $hero->rb_name1 }} </span>
                             </div>
-                            <h3 class="post-title">A Cozy Afternoon Filled With Purrs</h3>
-                            <p>Spent the day surrounded by the sweetest cats, warm coffee, and the calmest atmosphere ever.</p>
+                            <h3 class="post-title">{{ $hero->rb_title1 }}</h3>
+                            <p>{{ $hero->rb_desc1 }}</p>
                             <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
 
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="post-box">
-                            <div class="post-img"><img src="assets/img/cat blog2.jpg" class="img-fluid" alt=""></div>
+                            <div class="post-img"><img src="assets/img/{{ $hero->recent_blog2 }}" class="img-fluid" alt=""></div>
                             <div class="meta">
-                                <span class="post-date">Fri, September 05</span>
-                                <span class="post-author"> / Sophie Williams</span>
+                                <span class="post-date">{{ $hero->rb_date2 }} </span>
+                                <span class="post-author">{{ $hero->rb_name2 }} </span>
                             </div>
-                            <h3 class="post-title">The Orange Cat That Wouldn’t Leave My Lap</h3>
-                            <p>One fluffy little troublemaker made my visit unforgettable with endless cuddles and sleepy purrs.</p>
+                            <h3 class="post-title">{{ $hero->rb_title2 }}</h3>
+                            <p>{{ $hero->rb_desc2 }}</p>
                             <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
 
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
                         <div class="post-box">
-                            <div class="post-img"><img src="assets/img/cat blog3.jpg" class="img-fluid" alt=""></div>
+                            <div class="post-img"><img src="assets/img/{{ $hero->recent_blog3 }}" class="img-fluid" alt=""></div>
                             <div class="meta">
-                                <span class="post-date">Tue, July 27</span>
-                                <span class="post-author"> / Daniel Moore</span>
+                                <span class="post-date">{{ $hero->rb_date3 }} </span>
+                                <span class="post-author">{{ $hero->rb_name3 }} </span>
                             </div>
-                            <h3 class="post-title">My First Visit To Meow Cafe</h3>
-                            <p>I came for the coffee but stayed because of the adorable cats stealing everyone’s hearts.</p>
+                            <h3 class="post-title">{{ $hero->rb_title3 }}</h3>
+                            <p>{{ $hero->rb_desc3 }}</p>
                             <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
 
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
                         <div class="post-box">
-                            <div class="post-img"><img src="assets/img/cat blog 4.jpg" class="img-fluid" alt=""></div>
+                            <div class="post-img"><img src="assets/img/{{ $hero->recent_blog4 }}" class="img-fluid" alt=""></div>
                             <div class="meta">
-                                <span class="post-date">Tue, Sep 16</span>
-                                <span class="post-author"> / Ethan Lee</span>
+                                <span class="post-date">{{ $hero->rb_date4 }} </span>
+                                <span class="post-author">{{ $hero->rb_name4 }} </span>
                             </div>
-                            <h3 class="post-title">Best Place For Cat Lovers To Relax”</h3>
-                            <p>A peaceful little cafe filled with playful cats, cozy corners, and comforting vibes all around.</p>
+                            <h3 class="post-title">{{ $hero->rb_title4 }}</h3>
+                            <p>{{ $hero->rb_desc4 }}</p>
                             <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -377,14 +377,22 @@
                 <div class="row gy-4">
                     <div class="col-lg-5 col-md-12 footer-about">
                         <a href="index.html" class="logo d-flex align-items-center">
-                            <span class="sitename">Meow Cafe ☕</span>
+                            <span class="sitename">{{ $footer->site_name }}</span>
                         </a>
-                        <p>We’re happy to share warm coffee, soft purrs, and cozy moments with every cat lover who walks through our doors.</p>
+                        <p>{{ $footer->about_text }}</p>
                         <div class="social-links d-flex mt-4">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
+                            <a href="{{ $footer->twitter }}">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="{{ $footer->facebook }}">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="{{ $footer->instagram }}">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="{{ $footer->linkedin }}">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -411,11 +419,9 @@
 
                     <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                         <h4>Contact Us</h4>
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p>United States</p>
-                        <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+                        <p>{{ $footer->address }}</p>
+                        <p class="mt-4"><strong>Phone:</strong> <span>{{ $footer->phone }}</span></p>
+                        <p><strong>Email:</strong> <span>{{ $footer->email }}</span></p>
                     </div>
 
                 </div>
@@ -423,7 +429,7 @@
         </div>
 
         <div class="container copyright text-center">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">Meow Cafe ☕</strong> <span>All Rights Reserved</span></p>
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">{{ $footer->site_name }}</strong> <span>All Rights Reserved</span></p>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you've purchased the pro version. -->

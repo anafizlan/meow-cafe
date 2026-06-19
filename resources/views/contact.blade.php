@@ -58,11 +58,7 @@ $contact = \App\Models\Contact::first();
           <li><a href="{{ url('/team') }}">Team</a></li>
           <li><a href="{{ url('/blog') }}">Blog</a></li>
           <li><a href="{{ url('/contact') }}" class="active">Contact</a></li>
-           @if (Auth::check() && Auth::user()->role == 'admin')
-                        <a href="/admin/hero" class="btn btn-warning">
-                            Admin Panel
-                        </a>
-                    @endif
+           
                     @if (Auth::check())
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
                             @csrf
@@ -178,15 +174,23 @@ $contact = \App\Models\Contact::first();
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-about">
             <a href="index.html" class="logo d-flex align-items-center">
-              <span class="sitename">Meow Cafe ☕</span>
+              <span class="sitename">{{ $footer->site_name }}</span>
             </a>
-            <p>We’re happy to share warm coffee, soft purrs, and cozy moments with every cat lover who walks through our doors.</p>
+            <p>{{ $footer->about_text }}</p>
             <div class="social-links d-flex mt-4">
-              <a href=""><i class="bi bi-twitter-x"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
+                            <a href="{{ $footer->twitter }}">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="{{ $footer->facebook }}">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="{{ $footer->instagram }}">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="{{ $footer->linkedin }}">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
@@ -212,6 +216,7 @@ $contact = \App\Models\Contact::first();
 
           <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
+            <p>{{ $footer->address }}</p>
             <p>{{ $contact->address }}</p>
             <p>{{ $contact->phone }}</p>
             <p>{{ $contact->email }}</p>
@@ -222,7 +227,7 @@ $contact = \App\Models\Contact::first();
     </div>
 
     <div class="container copyright text-center">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Meow Cafe ☕</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">{{ $footer->site_name }}</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->

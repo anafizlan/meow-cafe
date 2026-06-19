@@ -56,11 +56,7 @@
                     <li><a href="{{ url('/team') }}">Team</a></li>
                     <li><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
-                     @if (Auth::check() && Auth::user()->role == 'admin')
-                        <a href="/admin/hero" class="btn btn-warning">
-                            Admin Panel
-                        </a>
-                    @endif
+
                     @if (Auth::check())
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
                             @csrf
@@ -159,36 +155,64 @@
               </script>
                             <div class="swiper-wrapper">
 
-                                <div class="swiper-slide">
-                                    <div class="item">
-                                        <h3 class="mb-3">🐾 Our Story</h3>
-                                        <h4 class="mb-3">Meow Cafe began with a small idea inspired by a deep love for cats and a passion for creating a comforting space for people to unwind. We wanted to build more than just a cafe, we wanted a peaceful little home filled with warmth, coffee, and the soft sound of purring cats.</h4>
-                                        <p>Many of the cats here were rescued and given a second chance to live happily and safely. Over time, they became part of our family and the heart of our cafe. Every corner of Meow Cafe was designed to make both humans and cats feel relaxed, comfortable, and loved.</p>
-                                        </div>
-                                </div><!-- End slide item -->
+
 
                                 <div class="swiper-slide">
+
                                     <div class="item">
-                                        <h3 class="mb-3">🐱 Meet Our Lovely Residents</h3>
-                                        <h4 class="mb-3">Our cafe is home to many adorable cats with different personalities, colors, and stories. Some are playful and energetic, while others enjoy sleeping peacefully beside visitors all day long. No matter their personality, every cat here loves attention, gentle cuddles, and making new friends.</h4>
-                                        <p>Many visitors come to Meow Cafe not only for coffee, but also to experience the calming and joyful energy our cats bring into the cafe. Watching them play, nap, or quietly sit beside you can instantly make your day feel brighter.</p>
+
+                                        <h3 class="mb-3">{{ $about->about_title1 }}</h3>
+
+                                        <h4 class="mb-3">{{ $about->about_desc1 }}</h4>
+
+
                                     </div>
+
                                 </div><!-- End slide item -->
 
-                                <div class="swiper-slide">
-                                    <div class="item">
-                                        <h3 class="mb-3">☕ A Cozy Experience Like No Other</h3>
-                                        <h4 class="mb-3">Meow Cafe was designed to create a warm and welcoming atmosphere for every guest who walks through our doors. Soft lighting, comfortable seating, relaxing music, and adorable cats wandering around freely create the perfect place to relax and recharge.</h4>
-                                       <p>Whether you are studying, working, catching up with friends, or enjoying some quiet time alone, our cafe offers a peaceful environment away from the stress of everyday life. Many guests say the presence of our cats makes them feel calmer, happier, and more at ease.</p>
-                                    </div>
-                                </div><!-- End slide item -->
+
 
                                 <div class="swiper-slide">
+
                                     <div class="item">
-                                        <h3 class="mb-3">💖 Rescue, Love, and Adoption</h3>
-                                        <h4 class="mb-3">Some of our cats arrived frightened, sick, or abandoned, but through patience and kindness, they slowly learned to trust again. Seeing them grow healthier, more playful, and more confident is one of the most rewarding parts of our journey.</h4>
-                                        <p>Our mission goes beyond serving coffee and creating a beautiful cafe space. We are passionate about helping rescued cats find safety, care, and loving forever homes. We hope our cafe can inspire more people to understand the importance of animal rescue, adoption, and responsible pet care. Every visit, every coffee purchased, and every moment shared with our cats helps support their wellbeing and future.</p>
+
+                                        <h3 class="mb-3"> {{ $about->about_title2 }}</h3>
+
+                                        <h4 class="mb-3">{{ $about->about_desc2 }}</h4>
+
+
                                     </div>
+
+                                </div><!-- End slide item -->
+
+
+
+                                <div class="swiper-slide">
+
+                                    <div class="item">
+
+                                        <h3 class="mb-3"> {{ $about->about_title3 }}</h3>
+
+                                        <h4 class="mb-3">{{ $about->about_desc3 }}</h4>
+
+
+                                    </div>
+
+                                </div><!-- End slide item -->
+
+
+
+                                <div class="swiper-slide">
+
+                                    <div class="item">
+
+                                        <h3 class="mb-3"> {{ $about->about_title4 }}</h3>
+
+                                        <h4 class="mb-3">{{ $about->about_desc4 }}</h4>
+
+
+                                    </div>
+
                                 </div><!-- End slide item -->
 
                             </div>
@@ -208,14 +232,16 @@
         <!-- Call To Action Section -->
         <section id="call-to-action" class="call-to-action section dark-background">
 
-            <img src="{{ asset('assets/img/cat main pg3.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/' . $cta->image) }}" alt="">
 
             <div class="container">
                 <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
                     <div class="col-xl-10">
                         <div class="text-center">
-                            
-                            <a class="cta-btn" href="#">Call To Action</a>
+
+                            <a class="cta-btn" href="{{ $cta->button_link }}">
+                                {{ $cta->button_text }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -226,11 +252,6 @@
         <!-- Team Section -->
         <section id="team" class="team section">
 
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Our Team</h2>
-            </div><!-- End Section Title -->
-
             <div class="container">
 
                 <div class="row gy-4">
@@ -238,7 +259,7 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="team-member">
                             <div class="member-img">
-                                <img src="{{ asset('assets/img/cat about3.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/' . $team->member1_image) }}" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -247,8 +268,8 @@
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h4>Walter White</h4>
-                                <span>Chief Executive Officer</span>
+                                <h4>{{ $team->member1_name }}</h4>
+                                <span>{{ $team->member1_position }}</span>
                             </div>
                         </div>
                     </div><!-- End Team Member -->
@@ -256,7 +277,7 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                         <div class="team-member">
                             <div class="member-img">
-                                <img src="{{ asset('assets/img/cat about4.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/' . $team->member2_image) }}" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -265,8 +286,8 @@
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h4>Ethan Carter</h4>
-                                <span>Product Manager</span>
+                                <h4>{{ $team->member2_name }}</h4>
+                                <span>{{ $team->member2_position }}</span>
                             </div>
                         </div>
                     </div><!-- End Team Member -->
@@ -274,7 +295,7 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                         <div class="team-member">
                             <div class="member-img">
-                                <img src="{{ asset('assets/img/cat about5.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/' . $team->member3_image) }}" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -283,8 +304,8 @@
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
+                                <h4>{{ $team->member3_name }}</h4>
+                                <span>{{ $team->member3_position }}</span>
                             </div>
                         </div>
                     </div><!-- End Team Member -->
@@ -292,7 +313,7 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                         <div class="team-member">
                             <div class="member-img">
-                                <img src="{{ asset('assets/img/cat about6.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/' . $team->member4_image) }}" class="img-fluid" alt="">
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -301,8 +322,8 @@
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h4>Ryan Mitchell</h4>
-                                <span>Accountant</span>
+                                <h4>{{ $team->member4_name }}</h4>
+                                <span>{{ $team->member4_position }}</span>
                             </div>
                         </div>
                     </div><!-- End Team Member -->
@@ -313,6 +334,7 @@
 
         </section><!-- /Team Section -->
 
+
     </main>
 
     <footer id="footer" class="footer light-background">
@@ -322,19 +344,27 @@
                 <div class="row gy-4">
                     <div class="col-lg-5 col-md-12 footer-about">
                         <a href="index.html" class="logo d-flex align-items-center">
-                            <span class="sitename">Meow Cafe ☕</span>
+                            <span class="sitename">{{ $footer->site_name }}</span>
                         </a>
-                        <p>We’re happy to share warm coffee, soft purrs, and cozy moments with every cat lover who walks through our doors.</p>
+                        <p>{{ $footer->about_text }}</p>
                         <div class="social-links d-flex mt-4">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
+                            <a href="{{ $footer->twitter }}">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="{{ $footer->facebook }}">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="{{ $footer->instagram }}">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="{{ $footer->linkedin }}">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-6 footer-links">
-                          <h4>Useful Links</h4>
+                        <h4>Useful Links</h4>
                         <ul>
                             <li><a href="/home">Home</a></li>
                             <li><a href="/about">About us</a></li>
@@ -356,11 +386,9 @@
 
                     <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                         <h4>Contact Us</h4>
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p>United States</p>
-                        <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+                        <p>{{ $footer->address }}</p>
+                        <p class="mt-4"><strong>Phone:</strong> <span>{{ $footer->phone }}</span></p>
+                        <p><strong>Email:</strong> <span>{{ $footer->email }}</span></p>
                     </div>
 
                 </div>
@@ -368,7 +396,7 @@
         </div>
 
         <div class="container copyright text-center">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">Meow Cafe ☕</strong> <span>All Rights Reserved</span></p>
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">{{ $footer->site_name }}</strong> <span>All Rights Reserved</span></p>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you've purchased the pro version. -->

@@ -56,11 +56,7 @@
                     <li><a href="{{ url('/team') }}">Team</a></li>
                     <li><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
-                     @if (Auth::check() && Auth::user()->role == 'admin')
-                        <a href="/admin/hero" class="btn btn-warning">
-                            Admin Panel
-                        </a>
-                    @endif
+                    
                     @if (Auth::check())
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
                             @csrf
@@ -111,8 +107,8 @@
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
                         
                         <div>
-                            <h4 class="title">🐾 Cat Grooming</h4>
-                            <p class="description">Keep your furry friend clean, healthy, and extra fluffy with our gentle grooming services made specially for cats.</p>
+                            <h4 class="title">{{ $service->service1_title }}</h4>
+                            <p class="description">{{ $service->service1_desc }}</p>
                             <a href="/services/cat-grooming" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -120,24 +116,24 @@
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
                         <div>
-                            <h4 class="title">🐾 Cat Adoption</h4>
-                            <p class="description">Find your perfect feline companion through our adoption program, where love and care meet.</p>
+                            <h4 class="title">{{ $service->service2_title }}</h4>
+                            <p class="description">{{ $service->service2_desc }}</p>
                             <a href="/services/cat-adoption" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
                         <div>
-                            <h4 class="title">🐾 Cat Hotel</h4>
-                            <p class="description">Provide a safe and comfortable stay for your cat while you're away, with our premium cat hotel services.</p>
+                            <h4 class="title">{{ $service->service3_title }}</h4>
+                            <p class="description">{{ $service->service3_desc }}</p>
                             <a href="/services/cat-hotel" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="400">
                         <div>
-                            <h4 class="title">🐾 Cat Playroom</h4>
-                            <p class="description">Provide a fun and safe environment for your cat to play and socialize with other feline friends.</p>
+                            <h4 class="title">{{ $service->service4_title }}</h4>
+                            <p class="description">{{ $service->service4_desc }}</p>
                             <a href="/services/cat-playroom" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
@@ -145,16 +141,16 @@
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="500">
                        
                         <div>
-                            <h4 class="title">🐾 Vet Consultation</h4>
-                            <p class="description">Get expert veterinary advice and care for your cat with our professional consultation services.</p>
+                            <h4 class="title">{{ $service->service5_title }}</h4>
+                            <p class="description">{{ $service->service5_desc }}</p>
                             <a href="/services/vet-consultation" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="600">
                         <div>
-                            <h4 class="title">🐾 Cat Birthday Party</h4>
-                            <p class="description">Celebrate your cat's special day with a fun and memorable birthday party filled with treats, games, and lots of love.</p>
+                            <h4 class="title">{{ $service->service6_title }}</h4>
+                            <p class="description">{{ $service->service6_desc }}</p>
                             <a href="/services/cat-birthday-party" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
@@ -179,8 +175,8 @@
                                 </div>
                                 <div class="col-xl-7 d-flex align-items-center">
                                     <div class="card-body">
-                                        <h4 class="card-title"></h4>🐾 Cat Grooming</h4>
-                                        <p>Keep your feline friend looking and feeling their best with our gentle grooming services. From brushing and nail trimming to basic hygiene care, we ensure every cat receives the attention and comfort they deserve.</p>
+                                        <h4 class="card-title">{{ $service->service1_title }}</h4>
+                                        <p>{{ $service->service1_desc }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -195,10 +191,9 @@
                                 </div>
                                 <div class="col-xl-7 d-flex align-items-center">
                                     <div class="card-body">
-                                        <h4 class="card-title">🐾 Cat Adoption</h4>
-                                        <p>Give a rescued cat a second chance at happiness. Our adoption program connects loving cats with caring families, helping them find safe and forever homes.<p>>
-                                        </div>
-                                        
+                                        <h4 class="card-title">{{ $service->service2_title }}</h4>
+                                        <p>{{ $service->service2_desc }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -212,8 +207,8 @@
                                 </div>
                                 <div class="col-xl-7 d-flex align-items-center">
                                     <div class="card-body">
-                                        <h4 class="card-title">🐾 Cat Birthday Party</h4>
-                                        <p>Make your cat's special day unforgettable with our customized birthday packages, complete with decorations, treats, toys, and plenty of memorable moments.</p>
+                                        <h4 class="card-title">{{ $service->service3_title }}</h4>
+                                        <p>{{ $service->service3_desc }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -228,8 +223,8 @@
                                 </div>
                                 <div class="col-xl-7 d-flex align-items-center">
                                     <div class="card-body">
-                                        <h4 class="card-title">🐾 Cat Hotel</h4>
-                                        <p>Provide a safe and comfortable stay for your cat while you're away with our premium cat hotel services, complete with cozy accommodations and attentive care.</p>
+                                        <h4 class="card-title">{{ $service->service4_title }}</h4>
+                                        <p>{{ $service->service4_desc }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -378,14 +373,22 @@
                 <div class="row gy-4">
                     <div class="col-lg-5 col-md-12 footer-about">
                         <a href="index.html" class="logo d-flex align-items-center">
-                            <span class="sitename">Meow Cafe ☕</span>
+                            <span class="sitename">{{ $footer->site_name }}</span>
                         </a>
-                        <p>We’re happy to share warm coffee, soft purrs, and cozy moments with every cat lover who walks through our doors.</p>
+                        <p>{{ $footer->about_text }}</p>
                         <div class="social-links d-flex mt-4">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
+                            <a href="{{ $footer->twitter }}">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="{{ $footer->facebook }}">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="{{ $footer->instagram }}">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="{{ $footer->linkedin }}">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -412,11 +415,9 @@
 
                     <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                         <h4>Contact Us</h4>
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p>United States</p>
-                        <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+                        <p>{{ $footer->address }}</p>
+                        <p class="mt-4"><strong>Phone:</strong> <span>{{ $footer->phone }}</span></p>
+                        <p><strong>Email:</strong> <span>{{ $footer->email }}</span></p>
                     </div>
 
                 </div>
@@ -424,7 +425,7 @@
         </div>
 
         <div class="container copyright text-center">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">Meow Cafe ☕</strong> <span>All Rights Reserved</span></p>
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">{{ $footer->site_name }}</strong> <span>All Rights Reserved</span></p>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you've purchased the pro version. -->

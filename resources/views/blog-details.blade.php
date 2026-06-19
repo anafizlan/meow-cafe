@@ -457,11 +457,19 @@
             </a>
             <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
             <div class="social-links d-flex mt-4">
-              <a href=""><i class="bi bi-twitter-x"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
+                            <a href="{{ $footer->twitter }}">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="{{ $footer->facebook }}">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="{{ $footer->instagram }}">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="{{ $footer->linkedin }}">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
