@@ -16,6 +16,8 @@ use App\Http\Controllers\AdminFooterController;
 use App\Models\Footer;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AdminCallToActionController;
+use App\Http\Controllers\ServiceDetailController;
+use App\Http\Controllers\AdminServiceDetailController;
 
 Route::get('/team', function () {
 
@@ -28,10 +30,6 @@ Route::get('/team', function () {
     ));
 
 });
-Route::get('/admin/cta', [AdminCallToActionController::class, 'edit']);
-
-Route::post('/admin/cta/update', [AdminCallToActionController::class, 'update']);
-
 
 Route::get('/', function () {
     return view('landing');
@@ -62,8 +60,6 @@ Route::middleware('auth')->group(function () {
         return app(\App\Http\Controllers\AdminHeroController::class)->edit();
     });
 
-});
-
     Route::post('/admin/hero/update', function () {
         if (auth()->user()->role !== 'admin') {
             abort(403);
@@ -72,33 +68,6 @@ Route::middleware('auth')->group(function () {
         return app(\App\Http\Controllers\AdminHeroController::class)->update(request());
     });
 
-
-Route::get('/about', [AboutController::class, 'index']);
-
-
-
-Route::get('/services', [ServicesController::class, 'index']);
-
-Route::get('/portfolio', [PortfolioController::class, 'index']);
-
-
-
-Route::get('/blog', function () {
-    return view('blog');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::view('/services/cat-grooming', 'services.cat-grooming');
-Route::view('/services/cat-adoption', 'services.cat-adoption');
-Route::view('/services/cat-hotel', 'services.cat-hotel');
-Route::view('/services/cat-playroom', 'services.cat-playroom');
-Route::view('/services/vet-consultation', 'services.vet-consultation');
-Route::view('/services/cat-birthday-party', 'services.cat-birthday-party');
-
-Route::middleware('auth')->group(function () {
     Route::get('/admin/about', [AdminAboutController::class, 'edit']);
 
     Route::post('/admin/about/update', [AdminAboutController::class, 'update']);
@@ -119,11 +88,34 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/admin/portfolio/{id}', [AdminPortfolioController::class, 'update']);
 
-
     Route::get('/admin/footer', [AdminFooterController::class, 'edit']);
 
     Route::post('/admin/footer/update', [AdminFooterController::class, 'update']);
 
+    Route::get('/admin/cta', [AdminCallToActionController::class, 'edit']);
+
+    Route::post('/admin/cta/update', [AdminCallToActionController::class, 'update']);
+
+    Route::get('/admin/service-detail', [AdminServiceDetailController::class, 'index']);
+
+    Route::post('/admin/service-detail/{id}', [AdminServiceDetailController::class, 'update']);
+
 });
+
+Route::get('/about', [AboutController::class, 'index']);
+
+Route::get('/services', [ServicesController::class, 'index']);
+
+Route::get('/portfolio', [PortfolioController::class, 'index']);
+
+Route::get('/blog', function () {
+    return view('blog');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/services/{slug}', [ServiceDetailController::class, 'show']);
 
 require __DIR__ . '/auth.php';
