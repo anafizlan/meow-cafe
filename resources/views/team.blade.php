@@ -54,7 +54,6 @@
           <li><a href="{{ url('/services') }}">Services</a></li>
           <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
           <li><a href="{{ url('/team') }}" class="active">Team</a></li>
-          <li><a href="{{ url('/blog') }}">Blog</a></li>
           <li><a href="{{ url('/contact') }}">Contact</a></li>
           
                     @if (Auth::check())

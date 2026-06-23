@@ -22,7 +22,8 @@ class AdminPortfolioController extends Controller
         $portfolio->update([
             'category' => $request->category,
             'title' => $request->title,
-            'description' => $request->description
+            'description' => $request->description,
+            'image' => $request->image_url
         ]);
 
         return back()->with('success', 'Updated');

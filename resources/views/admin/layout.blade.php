@@ -49,12 +49,16 @@
     <div class="sidebar">
         <h3>🐱 Meow Cafe</h3>
         <p>Admin Panel</p>
-        <hr> <a href="/admin/hero"> <i class="bi bi-house"></i> Home </a> 
+        <hr> <a href="/admin/hero"> <i class="bi bi-house"></i> Home </a>
         <a href="/admin/about"> <i class="bi bi-info-circle"></i> About </a>
-         <a href="/admin/services"> <i class="bi bi-grid"></i> Services </a>
-          <a href="/admin/portfolio"> <i class="bi bi-briefcase"></i> Portfolio </a> 
-          <a href="/admin/team"> <i class="bi bi-people"></i> Team </a>
-           <a href="/admin/contact"> <i class="bi bi-envelope"></i> Contact </a> <a href="/admin/cta">
+        <a href="/admin/services"> <i class="bi bi-grid"></i> Services </a>
+        <a href="/admin/service-detail">
+            <i class="bi bi-grid"></i>
+            Service Details
+        </a>
+        <a href="/admin/portfolio"> <i class="bi bi-briefcase"></i> Portfolio </a>
+        <a href="/admin/team"> <i class="bi bi-people"></i> Team </a>
+        <a href="/admin/contact"> <i class="bi bi-envelope"></i> Contact </a> <a href="/admin/cta">
             <i class="bi bi-megaphone"></i>
             Call To Action
         </a><a href="/admin/footer"> <i class="bi bi-telephone"></i> Footer </a>

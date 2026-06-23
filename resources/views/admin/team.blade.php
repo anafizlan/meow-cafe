@@ -2,114 +2,105 @@
 
 @section('content')
 
-<div class="mb-3">
-    <h1 class="mb-4">
-    Edit Team Page
-</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <a href="{{ url('/home') }}" target="_blank" class="btn btn-primary">
-        🌐 View Website
+    <div>
+        <h1 class="fw-bold mb-1">
+            👥 Edit Team Page
+        </h1>
+
+        <p class="text-muted mb-0">
+            Manage team member information
+        </p>
+    </div>
+
+    <a href="{{ url('/home') }}"
+       target="_blank"
+       class="btn btn-outline-primary">
+
+        <i class="bi bi-box-arrow-up-right"></i>
+        View Website
+
     </a>
+
 </div>
 
+<div class="card shadow-sm border-0 rounded-4">
 
+    <div class="card-body p-4">
 
-<div class="card p-4">
+        <form action="/admin/team/update" method="POST">
 
-<form action="/admin/team/update" method="POST">
-    @csrf
+            @csrf
 
-    <h4>Member 1</h4>
+            @for($i = 1; $i <= 4; $i++)
 
-    <input
-        type="text"
-        name="member1_name"
-        class="form-control mb-3"
-        value="{{ $team->member1_name }}">
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
 
-    <input
-        type="text"
-        name="member1_position"
-        class="form-control mb-3"
-        value="{{ $team->member1_position }}">
+                    <div class="card-body">
 
-    <input
-        type="text"
-        name="member1_image"
-        class="form-control mb-4"
-        value="{{ $team->member1_image }}">
+                        <h5 class="fw-bold mb-4">
+                            Member {{ $i }}
+                        </h5>
 
-    <hr>
+                        <div class="mb-3">
 
-    <h4>Member 2</h4>
+                            <label class="form-label fw-semibold">
+                                Name
+                            </label>
 
-    <input
-        type="text"
-        name="member2_name"
-        class="form-control mb-3"
-        value="{{ $team->member2_name }}">
+                            <input
+                                type="text"
+                                name="member{{ $i }}_name"
+                                class="form-control"
+                                value="{{ $team->{'member'.$i.'_name'} }}">
 
-    <input
-        type="text"
-        name="member2_position"
-        class="form-control mb-3"
-        value="{{ $team->member2_position }}">
+                        </div>
 
-    <input
-        type="text"
-        name="member2_image"
-        class="form-control mb-4"
-        value="{{ $team->member2_image }}">
+                        <div class="mb-3">
 
-    <hr>
+                            <label class="form-label fw-semibold">
+                                Position
+                            </label>
 
-    <h4>Member 3</h4>
+                            <input
+                                type="text"
+                                name="member{{ $i }}_position"
+                                class="form-control"
+                                value="{{ $team->{'member'.$i.'_position'} }}">
 
-    <input
-        type="text"
-        name="member3_name"
-        class="form-control mb-3"
-        value="{{ $team->member3_name }}">
+                        </div>
 
-    <input
-        type="text"
-        name="member3_position"
-        class="form-control mb-3"
-        value="{{ $team->member3_position }}">
+                        <div class="mb-0">
 
-    <input
-        type="text"
-        name="member3_image"
-        class="form-control mb-4"
-        value="{{ $team->member3_image }}">
+                            <label class="form-label fw-semibold">
+                                Image
+                            </label>
 
-    <hr>
+                            <input
+                                type="text"
+                                name="member{{ $i }}_image"
+                                class="form-control"
+                                value="{{ $team->{'member'.$i.'_image'} }}">
 
-    <h4>Member 4</h4>
+                        </div>
 
-    <input
-        type="text"
-        name="member4_name"
-        class="form-control mb-3"
-        value="{{ $team->member4_name }}">
+                    </div>
 
-    <input
-        type="text"
-        name="member4_position"
-        class="form-control mb-3"
-        value="{{ $team->member4_position }}">
+                </div>
 
-    <input
-        type="text"
-        name="member4_image"
-        class="form-control mb-4"
-        value="{{ $team->member4_image }}">
+            @endfor
 
-    <button class="btn btn-primary">
-        Save Changes
-    </button>
+            <button class="btn btn-primary btn-lg px-5 rounded-3">
 
-</form>
+                <i class="bi bi-check-circle"></i>
+                Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 

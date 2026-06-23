@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< Updated upstream
 use App\Models\ServiceDetail;
 use Illuminate\Http\Request;
+=======
+use Illuminate\Http\Request;
+use App\Models\ServiceDetail;
+>>>>>>> Stashed changes
 
 class AdminServiceDetailController extends Controller
 {
@@ -21,6 +26,7 @@ class AdminServiceDetailController extends Controller
     {
         $service = ServiceDetail::findOrFail($id);
 
+<<<<<<< Updated upstream
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'short_desc' => 'required|string',
@@ -39,3 +45,27 @@ class AdminServiceDetailController extends Controller
         );
     }
 }
+=======
+        $service->update([
+
+            'title' => $request->title,
+            'short_desc' => $request->short_desc,
+
+            'image' => $request->image,
+
+            'about_title' => $request->about_title,
+            'about_desc' => $request->about_desc,
+
+            'features' => $request->features,
+
+            'pricing' => $request->pricing,
+
+        ]);
+
+        return back()->with(
+            'success',
+            'Service updated successfully!'
+        );
+    }
+}
+>>>>>>> Stashed changes

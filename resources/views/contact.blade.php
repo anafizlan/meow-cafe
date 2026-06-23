@@ -56,7 +56,6 @@ $contact = \App\Models\Contact::first();
           <li><a href="{{ url('/services') }}">Services</a></li>
           <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
           <li><a href="{{ url('/team') }}">Team</a></li>
-          <li><a href="{{ url('/blog') }}">Blog</a></li>
           <li><a href="{{ url('/contact') }}" class="active">Contact</a></li>
            
                     @if (Auth::check())

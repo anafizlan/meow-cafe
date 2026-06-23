@@ -1,71 +1,264 @@
-@extends('admin.layout') @section('content')
-    <div class="mb-3">
-        <h1 class="mb-4"> Edit Home Page </h1> <a href="{{ url('/home') }}" target="_blank" class="btn btn-primary"> 🌐 View Website </a>
+@extends('admin.layout')
+
+@section('content')
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h1 class="fw-bold mb-1">
+            🏠 Edit Home Page
+        </h1>
+
+        <p class="text-muted mb-0">
+            Manage hero section & featured content
+        </p>
     </div>
-    <div class="card p-4">
-        <form action="/admin/hero/update" method="POST"> @csrf <div class="mb-3"> <label>Title</label>
-                <textarea name="title" class="form-control" rows="4">{{ $hero->title }}</textarea>
-            </div>
-            <input type="text" name="image1" class="form-control mb-4" value="{{ $hero->image1 }}">
 
-            <div class="mb-3"> <label>Button Text</label> <input type="text" name="button_text" class="form-control" value="{{ $hero->button_text }}"> </div>
-            <div class="mb-3"> <label>Video URL</label> <input type="text" name="video_url" class="form-control" value="{{ $hero->video_url }}"> </div>
-            <input type="text" name="image2" class="form-control mb-4" value="{{ $hero->image2 }}">
+    <a href="{{ url('/home') }}"
+       target="_blank"
+       class="btn btn-outline-primary">
 
-            <div class="mb-3"> <label>Why Us Title 1</label> <input type="text" name="why_title_1" class="form-control" value="{{ $whyUs->slide1_title }}"> </div>
-            <div class="mb-3"> <label>Why Us Description 1</label>
-                <textarea name="why_desc_1" class="form-control" rows="4">{{ $whyUs->slide1_description }}</textarea>
-            </div>
-            <div class="mb-3"> <label>Why Us Title 2</label> <input type="text" name="why_title_2" class="form-control" value="{{ $whyUs->slide2_title }}"> </div>
-            <div class="mb-3"> <label>Why Us Description 2</label>
-                <textarea name="why_desc_2" class="form-control" rows="4">{{ $whyUs->slide2_description }}</textarea>
-            </div>
-            <div class="mb-3"> <label>Why Us Title 3</label> <input type="text" name="why_title_3" class="form-control" value="{{ $whyUs->slide3_title }}"> </div>
-            <div class="mb-3"> <label>Why Us Description 3</label>
-                <textarea name="why_desc_3" class="form-control" rows="4">{{ $whyUs->slide3_description }}</textarea>
-            </div>
-            <div class="mb-3"> <label>Why Us Title 4</label> <input type="text" name="why_title_4" class="form-control" value="{{ $whyUs->slide4_title }}"> </div>
-            <div class="mb-3"> <label>Why Us Description 4</label>
-                <textarea name="why_desc_4" class="form-control" rows="4">{{ $whyUs->slide4_description }}</textarea>
-            </div>
-            
-            <div class="mb-3"> <label>Recent Blog 1</label>
-                <input type="text" name="recent_blog1" class="form-control mb-4" value="{{ $hero->recent_blog1 }}">
-                <input type="text" name="rb_date1" class="form-control mb-4" value="{{ $hero->rb_date1 }}">
-                <input type="text" name="rb_name1" class="form-control mb-4" value="{{ $hero->rb_name1 }}">
-                <input type="text" name="rb_title1" class="form-control mb-4" value="{{ $hero->rb_title1 }}">
-                <input type="text" name="rb_desc1" class="form-control mb-4" value="{{ $hero->rb_desc1 }}">
-            </div>
+        <i class="bi bi-box-arrow-up-right"></i>
+        View Website
 
+    </a>
 
+</div>
 
-                <div class="mb-3"> <label>Recent Blog 2</label>
-                    <input type="text" name="recent_blog2" class="form-control mb-4" value="{{ $hero->recent_blog2 }}">
-                    <input type="text" name="rb_date2" class="form-control mb-4" value="{{ $hero->rb_date2 }}">
-                    <input type="text" name="rb_name2" class="form-control mb-4" value="{{ $hero->rb_name2 }}">
-                    <input type="text" name="rb_title2" class="form-control mb-4" value="{{ $hero->rb_title2 }}">
-                    <input type="text" name="rb_desc2" class="form-control mb-4" value="{{ $hero->rb_desc2 }}">
+<div class="card shadow-sm border-0 rounded-4">
+
+    <div class="card-body p-4">
+
+        <form action="/admin/hero/update" method="POST">
+
+            @csrf
+
+            {{-- HERO SECTION --}}
+            <h3 class="fw-bold mb-4">
+                🎬 Hero Section
+            </h3>
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Title
+                        </label>
+
+                        <textarea
+                            name="title"
+                            class="form-control"
+                            rows="4">{{ $hero->title }}</textarea>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Image 1
+                        </label>
+
+                        <input
+                            type="text"
+                            name="image1"
+                            class="form-control"
+                            value="{{ $hero->image1 }}">
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Button Text
+                        </label>
+
+                        <input
+                            type="text"
+                            name="button_text"
+                            class="form-control"
+                            value="{{ $hero->button_text }}">
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Video URL
+                        </label>
+
+                        <input
+                            type="text"
+                            name="video_url"
+                            class="form-control"
+                            value="{{ $hero->video_url }}">
+
+                    </div>
+
+                    <div class="mb-0">
+                        <label class="form-label fw-semibold">
+                            Image 2
+                        </label>
+
+                        <input
+                            type="text"
+                            name="image2"
+                            class="form-control"
+                            value="{{ $hero->image2 }}">
+
+                    </div>
+
                 </div>
 
-                    <div class="mb-3"> <label>Recent Blog 3</label>
-                        <input type="text" name="recent_blog3" class="form-control mb-4" value="{{ $hero->recent_blog3 }}">
-                        <input type="text" name="rb_date3" class="form-control mb-4" value="{{ $hero->rb_date3 }}">
-                        <input type="text" name="rb_name3" class="form-control mb-4" value="{{ $hero->rb_name3 }}">
-                        <input type="text" name="rb_title3" class="form-control mb-4" value="{{ $hero->rb_title3 }}">
-                        <input type="text" name="rb_desc3" class="form-control mb-4" value="{{ $hero->rb_desc3 }}">
+            </div>
+
+            {{-- WHY US SECTION --}}
+            <h3 class="fw-bold mb-4">
+                ⭐ Why Us Section
+            </h3>
+
+            @for($i = 1; $i <= 4; $i++)
+
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold mb-4">
+                            Slide {{ $i }}
+                        </h5>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Title
+                            </label>
+
+                            <input
+                                type="text"
+                                name="why_title_{{ $i }}"
+                                class="form-control"
+                                value="{{ $whyUs->{'slide'.$i.'_title'} }}">
+
                         </div>
 
+                        <div class="mb-0">
 
-                        <div class="mb-3"> <label>Recent Blog 4</label>
-                            <input type="text" name="recent_blog4" class="form-control mb-4" value="{{ $hero->recent_blog4 }}">
-                            <input type="text" name="rb_date4" class="form-control mb-4" value="{{ $hero->rb_date4 }}">
-                            <input type="text" name="rb_name4" class="form-control mb-4" value="{{ $hero->rb_name4 }}">
-                            <input type="text" name="rb_title4" class="form-control mb-4" value="{{ $hero->rb_title4 }}">
-                            <input type="text" name="rb_desc4" class="form-control mb-4" value="{{ $hero->rb_desc4 }}">
-                            </div>
+                            <label class="form-label">
+                                Description
+                            </label>
 
+                            <textarea
+                                name="why_desc_{{ $i }}"
+                                class="form-control"
+                                rows="4">{{ $whyUs->{'slide'.$i.'_description'} }}</textarea>
 
-                        </div> <button class="btn btn-primary"> Save Changes </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            @endfor
+
+            {{-- RECENT BLOGS --}}
+            <h3 class="fw-bold mb-4">
+                📰 Recent Blogs
+            </h3>
+
+            @for($i = 1; $i <= 4; $i++)
+
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold mb-4">
+                            Blog {{ $i }}
+                        </h5>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Image
+                            </label>
+
+                            <input
+                                type="text"
+                                name="recent_blog{{ $i }}"
+                                class="form-control"
+                                value="{{ $hero->{'recent_blog'.$i} }}">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Date
+                            </label>
+
+                            <input
+                                type="text"
+                                name="rb_date{{ $i }}"
+                                class="form-control"
+                                value="{{ $hero->{'rb_date'.$i} }}">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Author Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="rb_name{{ $i }}"
+                                class="form-control"
+                                value="{{ $hero->{'rb_name'.$i} }}">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Blog Title
+                            </label>
+
+                            <input
+                                type="text"
+                                name="rb_title{{ $i }}"
+                                class="form-control"
+                                value="{{ $hero->{'rb_title'.$i} }}">
+
+                        </div>
+
+                        <div class="mb-0">
+
+                            <label class="form-label">
+                                Description
+                            </label>
+
+                            <textarea
+                                name="rb_desc{{ $i }}"
+                                class="form-control"
+                                rows="3">{{ $hero->{'rb_desc'.$i} }}</textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            @endfor
+
+            <button class="btn btn-primary btn-lg px-5 rounded-3">
+
+                <i class="bi bi-check-circle"></i>
+                Save Changes
+
+            </button>
+
         </form>
+
     </div>
+
+</div>
+
 @endsection

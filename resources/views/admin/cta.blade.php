@@ -2,57 +2,111 @@
 
 @section('content')
 
-<div class="card p-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <h2 class="mb-4">
-        Edit Call To Action
-    </h2>
+    <div>
+        <h1 class="fw-bold mb-1">
+            📢 Edit Call To Action
+        </h1>
 
-    <form action="/admin/cta/update" method="POST">
+        <p class="text-muted mb-0">
+            Manage your CTA section
+        </p>
+    </div>
 
-        @csrf
+    <a href="{{ url('/home') }}"
+       target="_blank"
+       class="btn btn-outline-primary">
 
-        <div class="mb-3">
-            <label>Title</label>
+        <i class="bi bi-box-arrow-up-right"></i>
+        View Website
 
-            <input type="text"
-                   name="title"
-                   class="form-control"
-                   value="{{ $cta->title }}">
-        </div>
+    </a>
 
-        <div class="mb-3">
-            <label>Button Text</label>
+</div>
 
-            <input type="text"
-                   name="button_text"
-                   class="form-control"
-                   value="{{ $cta->button_text }}">
-        </div>
+<div class="card shadow-sm border-0 rounded-4">
 
-        <div class="mb-3">
-            <label>Button Link</label>
+    <div class="card-body p-4">
 
-            <input type="text"
-                   name="button_link"
-                   class="form-control"
-                   value="{{ $cta->button_link }}">
-        </div>
+        <form action="/admin/cta/update" method="POST">
 
-        <div class="mb-3">
-            <label>Image</label>
+            @csrf
 
-            <input type="text"
-                   name="image"
-                   class="form-control"
-                   value="{{ $cta->image }}">
-        </div>
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
 
-        <button class="btn btn-primary">
-            Save Changes
-        </button>
+                <div class="card-body">
 
-    </form>
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Title
+                        </label>
+
+                        <input
+                            type="text"
+                            name="title"
+                            class="form-control"
+                            value="{{ $cta->title }}">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Button Text
+                        </label>
+
+                        <input
+                            type="text"
+                            name="button_text"
+                            class="form-control"
+                            value="{{ $cta->button_text }}">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Button Link
+                        </label>
+
+                        <input
+                            type="text"
+                            name="button_link"
+                            class="form-control"
+                            value="{{ $cta->button_link }}">
+
+                    </div>
+
+                    <div class="mb-0">
+
+                        <label class="form-label fw-semibold">
+                            Image
+                        </label>
+
+                        <input
+                            type="text"
+                            name="image"
+                            class="form-control"
+                            value="{{ $cta->image }}">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary btn-lg px-5 rounded-3">
+
+                <i class="bi bi-check-circle"></i>
+                Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 

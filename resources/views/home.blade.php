@@ -54,7 +54,6 @@
                     <li><a href="{{ url('/services') }}">Services</a></li>
                     <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
                     <li><a href="{{ url('/team') }}">Team</a></li>
-                    <li><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
 
 
@@ -250,8 +249,15 @@
 
         </section><!-- /Services Section -->
 
+         <div class="container section-title" data-aos="fade-up">
+                <h2>{{ $cta->title }}</h2>
+
+            </div>
+
         <!-- Call To Action Section -->
         <section id="call-to-action" class="call-to-action section dark-background">
+
+           
 
             <img src="{{ asset('assets/img/' . $cta->image) }}" alt="">
 

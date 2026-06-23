@@ -2,149 +2,212 @@
 
 @section('content')
 
-<div class="mb-3">
-    <h1 class="mb-4">
-    Edit Services Page
-</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <a href="{{ url('/home') }}" target="_blank" class="btn btn-primary">
-        🌐 View Website
+    <div>
+        <h1 class="fw-bold mb-1">
+            🐾 Edit Services Page
+        </h1>
+
+        <p class="text-muted mb-0">
+            Manage all services & testimonials
+        </p>
+    </div>
+
+    <a href="{{ url('/services') }}"
+       target="_blank"
+       class="btn btn-outline-primary">
+
+        <i class="bi bi-box-arrow-up-right"></i>
+        View Website
+
     </a>
+
 </div>
 
+<div class="card shadow-sm border-0 rounded-4">
 
-<div class="card p-4">
+    <div class="card-body p-4">
 
-    <form action="/admin/services/update" method="POST">
-        @csrf
+        <form action="/admin/services/update" method="POST">
+            @csrf
 
-        <div class="mb-4">
-            <label>Section Title</label>
-            <input type="text"
-                   name="section_title"
-                   class="form-control"
-                   value="{{ $service->section_title }}">
-        </div>
+            {{-- SECTION TITLE --}}
+            <div class="mb-5">
 
-        <hr>
+                <label class="form-label fw-semibold">
+                    Section Title
+                </label>
 
-        <h4>Service 1</h4>
+                <input
+                    type="text"
+                    name="section_title"
+                    class="form-control"
+                    value="{{ $service->section_title }}">
 
-        <div class="mb-3">
-            <label>Title</label>
-            <input type="text"
-                   name="service1_title"
-                   class="form-control"
-                   value="{{ $service->service1_title }}">
-        </div>
+            </div>
 
-        <div class="mb-3">
-            <label>Description</label>
-            <textarea name="service1_desc"
-                      class="form-control"
-                      rows="3">{{ $service->service1_desc }}</textarea>
-        </div>
+            {{-- SERVICES --}}
+            <h3 class="fw-bold mb-4">
+                🐱 Services
+            </h3>
 
-        <hr>
+            @for($i = 1; $i <= 6; $i++)
 
-        <h4>Service 2</h4>
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
 
-        <div class="mb-3">
-            <label>Title</label>
-            <input type="text"
-                   name="service2_title"
-                   class="form-control"
-                   value="{{ $service->service2_title }}">
-        </div>
+                    <div class="card-body">
 
-        <div class="mb-3">
-            <label>Description</label>
-            <textarea name="service2_desc"
-                      class="form-control"
-                      rows="3">{{ $service->service2_desc }}</textarea>
-        </div>
+                        <h5 class="fw-bold mb-4">
+                            Service {{ $i }}
+                        </h5>
 
-        <hr>
+                        <div class="mb-3">
 
-        <h4>Service 3</h4>
+                            <label class="form-label">
+                                Title
+                            </label>
 
-        <div class="mb-3">
-            <label>Title</label>
-            <input type="text"
-                   name="service3_title"
-                   class="form-control"
-                   value="{{ $service->service3_title }}">
-        </div>
+                            <input
+                                type="text"
+                                name="service{{ $i }}_title"
+                                class="form-control"
+                                value="{{ $service->{'service'.$i.'_title'} }}">
 
-        <div class="mb-3">
-            <label>Description</label>
-            <textarea name="service3_desc"
-                      class="form-control"
-                      rows="3">{{ $service->service3_desc }}</textarea>
-        </div>
+                        </div>
 
-        <hr>
+                        <div class="mb-3">
 
-        <h4>Service 4</h4>
+                            <label class="form-label">
+                                Description
+                            </label>
 
-        <div class="mb-3">
-            <label>Title</label>
-            <input type="text"
-                   name="service4_title"
-                   class="form-control"
-                   value="{{ $service->service4_title }}">
-        </div>
+                            <textarea
+                                name="service{{ $i }}_desc"
+                                rows="3"
+                                class="form-control">{{ $service->{'service'.$i.'_desc'} }}</textarea>
 
-        <div class="mb-3">
-            <label>Description</label>
-            <textarea name="service4_desc"
-                      class="form-control"
-                      rows="3">{{ $service->service4_desc }}</textarea>
-        </div>
+                        </div>
 
-        <hr>
+                        <div class="mb-3">
 
-        <h4>Service 5</h4>
+                            <label class="form-label">
+                                Image
+                            </label>
 
-        <div class="mb-3">
-            <label>Title</label>
-            <input type="text"
-                   name="service5_title"
-                   class="form-control"
-                   value="{{ $service->service5_title }}">
-        </div>
+                            <input
+                                type="text"
+                                name="service_img{{ $i }}"
+                                class="form-control"
+                                value="{{ $service->{'service_img'.$i} }}">
 
-        <div class="mb-3">
-            <label>Description</label>
-            <textarea name="service5_desc"
-                      class="form-control"
-                      rows="3">{{ $service->service5_desc }}</textarea>
-        </div>
+                        </div>
 
-        <hr>
+                        <div class="mb-0">
 
-        <h4>Service 6</h4>
+                            <label class="form-label">
+                                Extra Info
+                            </label>
 
-        <div class="mb-3">
-            <label>Title</label>
-            <input type="text"
-                   name="service6_title"
-                   class="form-control"
-                   value="{{ $service->service6_title }}">
-        </div>
+                            <textarea
+                                name="service_info{{ $i }}"
+                                rows="3"
+                                class="form-control">{{ $service->{'service_info'.$i} }}</textarea>
 
-        <div class="mb-3">
-            <label>Description</label>
-            <textarea name="service6_desc"
-                      class="form-control"
-                      rows="3">{{ $service->service6_desc }}</textarea>
-        </div>
+                        </div>
 
-        <button class="btn btn-primary">
-            Save Changes
-        </button>
+                    </div>
 
-    </form>
+                </div>
+
+            @endfor
+
+            {{-- TESTIMONIALS --}}
+            <h3 class="fw-bold mb-4 mt-5">
+                ⭐ Testimonials
+            </h3>
+
+            @for($i = 1; $i <= 5; $i++)
+
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold mb-4">
+                            Testimonial {{ $i }}
+                        </h5>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Image
+                            </label>
+
+                            <input
+                                type="text"
+                                name="test_img{{ $i }}"
+                                class="form-control"
+                                value="{{ $service->{'test_img'.$i} }}">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="test_name{{ $i }}"
+                                class="form-control"
+                                value="{{ $service->{'test_name'.$i} }}">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Position
+                            </label>
+
+                            <input
+                                type="text"
+                                name="test_pos{{ $i }}"
+                                class="form-control"
+                                value="{{ $service->{'test_pos'.$i} }}">
+
+                        </div>
+
+                        <div class="mb-0">
+
+                            <label class="form-label">
+                                Description
+                            </label>
+
+                            <textarea
+                                name="test_desc{{ $i }}"
+                                rows="3"
+                                class="form-control">{{ $service->{'test_desc'.$i} }}</textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            @endfor
+
+            <button class="btn btn-primary btn-lg px-5 rounded-3">
+
+                <i class="bi bi-check-circle"></i>
+                Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 

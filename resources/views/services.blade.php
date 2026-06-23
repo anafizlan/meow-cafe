@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,80OTHING:ital,wght@0,1００;０,２００;０,３００;０,４００;０,５００;０,６００;０,７００;０,８００;０,９００;１,１００;１,２００;１,３００;１,４００;１,５００;１,６００;１,７００;１,８０₀;１,９₀₀&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
@@ -54,9 +54,8 @@
                     <li><a href="{{ url('/services') }}" class="active">Services</a></li>
                     <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
                     <li><a href="{{ url('/team') }}">Team</a></li>
-                    <li><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
-                    
+
                     @if (Auth::check())
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
                             @csrf
@@ -97,7 +96,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Our Services</h2>
-                
+
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -105,7 +104,7 @@
                 <div class="row gy-4">
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-                        
+
                         <div>
                             <h4 class="title">{{ $service->service1_title }}</h4>
                             <p class="description">{{ $service->service1_desc }}</p>
@@ -139,7 +138,7 @@
                     </div><!-- End Service Item -->
 
                     <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="500">
-                       
+
                         <div>
                             <h4 class="title">{{ $service->service5_title }}</h4>
                             <p class="description">{{ $service->service5_desc }}</p>
@@ -167,70 +166,124 @@
 
                 <div class="row gy-4">
 
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-item">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <div class="card-bg"><img src="assets/img/cat service1.jpg" alt=""></div>
-                                </div>
-                                <div class="col-xl-7 d-flex align-items-center">
-                                    <div class="card-body">
-                                        <h4 class="card-title">{{ $service->service1_title }}</h4>
-                                        <p>{{ $service->service1_desc }}</p>
+                    @if ($service->service_img1 && $service->service1_title && $service->service_info1)
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="card-item">
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="post-img">
+                                            <img src="{{ asset('assets/img/' . $service->service_img1) }}" class="img-fluid" alt=""></div>
+                                    </div>
+
+                                    <div class="col-xl-7 d-flex align-items-center">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{ $service->service1_title }}</h4>
+                                            <p>{{ $service->service_info1 }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- End Card Item -->
+                    @endif
 
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card-item">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <div class="card-bg"><img src="assets/img/cat service2.jpg" alt=""></div>
-                                </div>
-                                <div class="col-xl-7 d-flex align-items-center">
-                                    <div class="card-body">
-                                        <h4 class="card-title">{{ $service->service2_title }}</h4>
-                                        <p>{{ $service->service2_desc }}</p>
+
+                    @if ($service->service_img2 && $service->service2_title && $service->service_info2)
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="card-item">
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="post-img">
+                                            <img src="{{ asset('assets/img/' . $service->service_img2) }}" class="img-fluid" alt=""></div>
+                                    </div>
+                                    <div class="col-xl-7 d-flex align-items-center">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{ $service->service2_title }}</h4>
+                                            <p>{{ $service->service_info2 }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- End Card Item -->
+                    @endif
 
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-item">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <div class="card-bg"><img src="assets/img/cat service3.jpg" alt=""></div>
-                                </div>
-                                <div class="col-xl-7 d-flex align-items-center">
-                                    <div class="card-body">
-                                        <h4 class="card-title">{{ $service->service3_title }}</h4>
-                                        <p>{{ $service->service3_desc }}</p>
+
+                    @if ($service->service_img3 && $service->service3_title && $service->service_info3)
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                            <div class="card-item">
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="post-img">
+                                            <img src="{{ asset('assets/img/' . $service->service_img3) }}" class="img-fluid" alt=""></div>
+                                    </div>
+                                    <div class="col-xl-7 d-flex align-items-center">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{ $service->service3_title }} </h4>
+                                            <p>{{ $service->service_info3 }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- End Card Item -->
+                    @endif
 
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="card-item">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <div class="card-bg"><img src="assets/img/cat service4.jpg" alt=""></div>
-                                </div>
-                                <div class="col-xl-7 d-flex align-items-center">
-                                    <div class="card-body">
-                                        <h4 class="card-title">{{ $service->service4_title }}</h4>
-                                        <p>{{ $service->service4_desc }}</p>
+
+                    @if ($service->service_img4 && $service->service4_title && $service->service_info4)
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                            <div class="card-item">
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="post-img">
+                                            <img src="{{ asset('assets/img/' . $service->service_img4) }}" class="img-fluid" alt=""></div>
+                                    </div>
+                                    <div class="col-xl-7 d-flex align-items-center">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{ $service->service4_title }}</h4>
+                                            <p>{{ $service->service_info4 }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- End Card Item -->
+                    @endif
 
+
+                    @if ($service->service_img5 && $service->service5_title && $service->service_info5)
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+                            <div class="card-item">
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="post-img">
+                                            <img src="{{ asset('assets/img/' . $service->service_img5) }}" class="img-fluid" alt=""></div>
+                                    </div>
+                                    <div class="col-xl-7 d-flex align-items-center">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{ $service->service5_title }}</h4>
+                                            <p>{{ $service->service_info5 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if ($service->service_img6 || $service->service_info6)
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+                            <div class="card-item">
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="post-img">
+                                            <img src="{{ asset('assets/img/' . $service->service_img6) }}" class="img-fluid" alt=""></div>
+                                    </div>
+                                    <div class="col-xl-7 d-flex align-items-center">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{ $service->service6_title }}</h4>
+                                            <p>{{ $service->service_info6 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
             </div>
@@ -243,7 +296,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Testimonials</h2>
-                
+
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -282,12 +335,12 @@
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                 </div>
                                 <p>
-                                    Meow Cafe is the perfect combination of great coffee and adorable cats. The atmosphere is incredibly relaxing, and every cat is clearly loved and well cared for.
+                                    {{ $service->test_desc1 }}
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="assets/img/cat service5.jpg" class="testimonial-img" alt="">
-                                    <h3>Sarah Lim</h3>
-                                    <h4>Lifestyle Influencer</h4>
+                                    <img src="{{ asset('assets/img/' . $service->test_img1) }}" class="testimonial-img" alt="">
+                                    <h3>{{ $service->test_name1 }}</h3>
+                                    <h4>{{ $service->test_pos1 }}</h4>
                                 </div>
                             </div>
                         </div><!-- End testimonial item -->
@@ -298,12 +351,12 @@
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                 </div>
                                 <p>
-                                  The staff were incredibly welcoming, and it was clear how much they care for the cats. Great coffee, comfortable seating, and lots of adorable feline friends!
+                                    {{ $service->test_desc2 }}
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="assets/img/cat service6.jpg" class="testimonial-img" alt="">
-                                    <h3>Daniel Tan</h3>
-                                    <h4>Travel Blogger</h4>
+                                    <img src="{{ asset('assets/img/' . $service->test_img2) }}" class="testimonial-img" alt="">
+                                    <h3>{{ $service->test_name2 }}</h3>
+                                    <h4>{{ $service->test_pos2 }}</h4>
                                 </div>
                             </div>
                         </div><!-- End testimonial item -->
@@ -314,12 +367,12 @@
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                 </div>
                                 <p>
-                                    As a cat lover, this place exceeded my expectations. The cafe is clean, well-maintained, and the cats are healthy, happy, and well cared for.
+                                    {{ $service->test_desc3 }}
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="assets/img/cat service7.jpg" class="testimonial-img" alt="">
-                                    <h3>Jason Lee</h3>
-                                    <h4>Store Owner</h4>
+                                    <img src="{{ asset('assets/img/' . $service->test_img3) }}" class="testimonial-img" alt="">
+                                    <h3>{{ $service->test_name3 }}</h3>
+                                    <h4>{{ $service->test_pos3 }}</h4>
                                 </div>
                             </div>
                         </div><!-- End testimonial item -->
@@ -330,12 +383,12 @@
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                 </div>
                                 <p>
-                                   Meow Cafe offers the perfect escape from a busy day. Enjoying a cup of coffee while surrounded by adorable cats is an experience I would recommend to everyone.
+                                    {{ $service->test_desc4 }}
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="assets/img/cat service8.jpg" class="testimonial-img" alt="">
-                                    <h3>Emily Wong</h3>
-                                    <h4>Freelancer</h4>
+                                    <img src="{{ asset('assets/img/' . $service->test_img4) }}" class="testimonial-img" alt="">
+                                    <h3>{{ $service->test_name4 }}</h3>
+                                    <h4>{{ $service->test_pos4 }}</h4>
                                 </div>
                             </div>
                         </div><!-- End testimonial item -->
@@ -346,12 +399,12 @@
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                 </div>
                                 <p>
-                                    I came here with friends and ended up staying for hours. The cats were playful and affectionate, making the entire experience both relaxing and memorable.
+                                    {{ $service->test_desc5 }}
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="assets/img/cat service9.jpg" class="testimonial-img" alt="">
-                                    <h3>John Larson</h3>
-                                    <h4>Entrepreneur</h4>
+                                    <img src="{{ asset('assets/img/' . $service->test_img5) }}" class="testimonial-img" alt="">
+                                    <h3>{{ $service->test_name5 }}</h3>
+                                    <h4>{{ $service->test_pos5 }}</h4>
                                 </div>
                             </div>
                         </div><!-- End testimonial item -->
@@ -393,7 +446,7 @@
                     </div>
 
                     <div class="col-lg-2 col-6 footer-links">
-                          <h4>Useful Links</h4>
+                        <h4>Useful Links</h4>
                         <ul>
                             <li><a href="/">Home</a></li>
                             <li><a href="/about">About us</a></li>
